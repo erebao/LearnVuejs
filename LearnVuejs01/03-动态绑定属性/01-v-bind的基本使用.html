@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!-- 错误的做法：这里不可以使用mustache语法 -->
+    <!-- <img src="{{message}}}" alt> -->
+    <!-- 正确的做法：使用v-bind指令 -->
+    <img v-bind:src="imgURL" alt="">
+    <a v-bind:href="aHref">百度一下</a>
+
+    <!-- 语法糖的写法 -->
+    <img :src="imgURL" alt="">
+    <a :href="aHref">百度一下</a>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    //let(变量)/const(常量)
+    const app = new Vue({
+        el: '#app',//用于挂在要管理的元素
+        data: {//定义数据
+            message: '你好啊,Vuejs!',
+            imgURL: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586179840663&di=e507d5a2058c5d37aa350af230232bd9&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F78%2F52%2F01200000123847134434529793168.jpg',
+            aHref: 'http://www.baidu.com'
+        }
+    })
+</script>
+
+</body>
+</html>
