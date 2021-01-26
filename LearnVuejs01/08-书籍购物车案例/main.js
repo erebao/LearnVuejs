@@ -63,10 +63,12 @@ const app = new Vue({
             return totalPrice*/
 
             // 3. for (let i of this.books)
-            for (let item of this.books) {
+            /*for (let item of this.books) {
                 totalPrice += item.price * item.count
             }
-            return totalPrice
+            return totalPrice*/
+
+            return this.books.reduce((pre, n) => pre + n.price * n.count, 0)
         }
     },
     filters: {
@@ -75,6 +77,7 @@ const app = new Vue({
         }
     }
 })
+
 
 // 编程范式：命令式编程/声明式编程
 // 编程范式：面向对象编程(第一公民:对象)/函数式编程(第一公民:函数)
@@ -98,6 +101,7 @@ let newNums = nums.filter(function (n) {
 })
 console.log(newNums)
 
+
 // 2.需求：将所有小于100的数字进行转换，全部*2
 /*let new2Nums = []
 for (let n of newNums) {
@@ -109,6 +113,7 @@ let new2Nums = newNums.map(function (n) {
     return n * 2
 })
 console.log(new2Nums)
+
 
 // 3.需求：将所有new2Num数字相加，得到最终的结果
 /*let total = 0
@@ -125,4 +130,17 @@ let total = new2Nums.reduce(function (preValue, n) {
     // 第三次 preValue=140，n=100
     return preValue + n;
 }, 0)
+console.log(total)
+
+
+total = nums.filter(function (n) {
+    return n < 100
+}).map(function (n) {
+    return n * 2
+}).reduce(function (preValue, n) {
+    return preValue + n
+}, 0)
+console.log(total)
+
+total = nums.filter(n => n < 100).map(n => n * 2).reduce((pre, n) => pre + n)
 console.log(total)
