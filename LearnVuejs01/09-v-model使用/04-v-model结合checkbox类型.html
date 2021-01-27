@@ -23,6 +23,12 @@
     <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
     <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
     <h2>您的爱好是：{{hobbies}}</h2>
+
+    <br/><br/><br/><br/>
+    <label v-for="item in originHobbies" :for="item">
+        <input type="checkbox" :id="item" :value="item" v-model="origin">{{item}}
+    </label>
+    <h2>您的爱好是：{{origin}}</h2>
 </div>
 
 <script src="../js/vue.js"></script>
@@ -32,8 +38,10 @@
         el: '#app',//用于挂在要管理的元素
         data: {//定义数据
             message: '你好啊',
-            isAgree: false,
-            hobbies: []
+            isAgree: false, // 单选框
+            hobbies: [],    // 多选框
+            originHobbies: ['乒乓球', '篮球', '足球', '羽毛球', '台球'],
+            origin: []
         }
     })
 </script>
