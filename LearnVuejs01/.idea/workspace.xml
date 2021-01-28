@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9058a320-b420-4320-9887-7cc601667a14" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/01-为什么要有模块化/aaa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/01-为什么要有模块化/bbb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/01-为什么要有模块化/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/01-为什么要有模块化/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/01-为什么要有模块化/mmm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/01-为什么要有模块化/nnn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/aaa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/bbb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/mmm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/aaa.js" beforeDir="false" afterPath="$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/aaa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/mmm.js" beforeDir="false" afterPath="$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/mmm.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            <state>
+              <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
@@ -55,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/aaa.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="23" column="32" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="32" />
+            <state relative-caret-position="176">
+              <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -73,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/mmm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+            <state relative-caret-position="528">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -355,12 +346,12 @@
       <workItem from="1611558326630" duration="10582000" />
       <workItem from="1611629227816" duration="22039000" />
       <workItem from="1611712113962" duration="22215000" />
-      <workItem from="1611796637150" duration="6085000" />
+      <workItem from="1611796637150" duration="6930000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113083000" />
+    <option name="totallyTimeSpent" value="113928000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -732,13 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/bbb.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -746,17 +730,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/aaa.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="32" />
+        <state relative-caret-position="176">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/12-前端模块化/02-ES6的模块化实现/mmm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        <state relative-caret-position="528">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

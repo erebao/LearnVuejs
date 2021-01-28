@@ -19,3 +19,14 @@ console.log(mu1(30, 50));
 
 const p = new Person();
 p.run();
+
+// 4.导入 export default中的内容
+import addr from './aaa.js'
+//console.log(addr)
+addr('你好阿')
+
+// 5.统一全部导入
+import * as aaa from './aaa.js'
+
+console.log(aaa.flag)
+console.log(aaa.height)
