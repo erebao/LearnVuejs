@@ -23,6 +23,6 @@ var modelA = (function () {
 })()
 
 // CommonJS模块化导出
- /*model.exports={
+ /*module.exports={
     flag, sum
  }*/
