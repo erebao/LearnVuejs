@@ -1,11 +1,12 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+    <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick" ref="tabControl1" class="tab-control" v-show="isTabFixed"></tab-control>
     <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll" :pull-up-load="true" @pullingUp="loadMore">
-      <home-swiper :banners="banners"></home-swiper>
+      <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"></home-swiper>
       <recommend-view :recommends="recommends"></recommend-view>
       <feature-view></feature-view>
-      <tab-control class="tab-control" :titles="['流行', '新款', '精选']" @tabClick="tabClick"></tab-control>
+      <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick" ref="tabControl2"></tab-control>
       <goods-list :goods="showGoods"></goods-list>
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
@@ -27,6 +28,10 @@
     getHomeMultidata,
     getHomeGoods
   } from "../../network/home";
+
+  import {
+    debounce
+  } from  'common/utils'
 
   export default {
     name: "Home",
@@ -51,7 +56,10 @@
           'k3': {page: 0, list: []},
         },
         currentType: 'k1',
-        isShowBackTop: false
+        isShowBackTop: false,
+        tabOffsetTop: 0,
+        isTabFixed: false,
+        saveY: 0
       }
     },
     created() { // 组件创建完成发送网络请求
@@ -63,16 +71,33 @@
       this.getHomeGoods('k2')
       this.getHomeGoods('k3')
     },
+    mounted() {
+      // 1.图片加载完成的事件监听
+      const refresh = debounce(this.$refs.scroll.refresh, 200)
+      this.$bus.$on('itemImageLoad', () => {
+        refresh()
+      })
+      // 2.获取tabControl的tabOffsetTop
+      // 所有的组件都有一个属性$el，用于获取组件元素
+      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
+    },
+    activated() {
+      this.$refs.scroll.scrollTo(0, this.saveY, 0)
+      this.$refs.scroll.refresh()
+    },
+    deactivated() {
+      this.saveY = this.$refs.scroll.getScrollY()
+    },
     computed: {
-      showGoods(){
+      showGoods() {
         return this.goods[this.currentType].list;
       }
     },
-    methods:{
+    methods: {
       /**
        * 事件监听相关的方法
        */
-      tabClick(index){
+      tabClick(index) {
         switch (index) {
           case 0:
             this.currentType = 'k1'
@@ -84,33 +109,39 @@
             this.currentType = 'k3'
             break
         }
+        this.$refs.tabControl1.currentIndex = index
+        this.$refs.tabControl2.currentIndex = index
       },
-      backClick(){
+      backClick() {
         this.$refs.scroll.scrollTo(0, 0, 500)
       },
-      contentScroll(position){
+      contentScroll(position) {
+        // 1.判断BackTop是否显示
         this.isShowBackTop = (-position.y) > 100
-      },
-      loadMore(){
-        // console.log('上拉加载更多');
-        this.getHomeGoods(this.currentType)
 
-        this.$refs.scroll.scroll.refresh()
+        // 2.决定tabControl是否吸顶(position: fixed)
+        this.isTabFixed = (-position.y) > this.tabOffsetTop
+      },
+      loadMore() {
+        this.getHomeGoods(this.currentType)
+      },
+      swiperImageLoad(){
+        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
       },
       /**
        * 网络请求相关的方法
        */
-      getHomeMultidata(){
+      getHomeMultidata() {
         getHomeMultidata().then(res => {
           //this.banners = res.data.banner.list;
           //this.recommends = res.data.recommend.list;
           this.banners = [{
             image: 'https://static.jk.ybstatic.com/ups/img/Flnqbb9Dvl2E1AvrsgbUg__aMZVZ.jpeg',
             link: 'https://www.baidu.com/'
-          },{
+          }, {
             image: 'https://static.jk.ybstatic.com/ups/img/FuCvhuNDMBRZt5P4pw7r3FPIJRnz.jpeg',
             link: 'https://www.baidu.com/'
-          },{
+          }, {
             image: 'https://static.jk.ybstatic.com/ups/img/Fhvmt7CxmL-OleMQRAAcGQI2nWDs.jpeg',
             link: 'https://www.baidu.com/'
           },];
@@ -118,27 +149,28 @@
             image: 'https://static.jk.ybstatic.com/ups/img/Flnqbb9Dvl2E1AvrsgbUg__aMZVZ.jpeg',
             link: 'https://www.baidu.com/',
             title: '一号'
-          },{
+          }, {
             image: 'https://static.jk.ybstatic.com/ups/img/FuCvhuNDMBRZt5P4pw7r3FPIJRnz.jpeg',
             link: 'https://www.baidu.com/',
             title: '二号'
-          },{
+          }, {
             image: 'https://static.jk.ybstatic.com/ups/img/Fhvmt7CxmL-OleMQRAAcGQI2nWDs.jpeg',
             link: 'https://www.baidu.com/',
             title: '三号'
-          },{
+          }, {
             image: 'https://static.jk.ybstatic.com/ups/img/FgHmU65h9N5T0e1WVgP0ckFxxYw-.jpeg',
             link: 'https://www.baidu.com/',
             title: '四号'
           }];
         })
       },
-      getHomeGoods(type){
+      getHomeGoods(type) {
         const page = this.goods[type].page + 1
         getHomeGoods(type, page).then(res => {
           this.goods[type].list.push(...res.data.data.articles)
           this.goods[type].page += 1
 
+          // 完成上拉加载更多
           this.$refs.scroll.finishPullUp()
         })
       },
@@ -157,17 +189,12 @@
     background-color: var(--color-tint);
     color: #fff;
 
-    position: fixed;
+    /*在使用浏览器原生滚动时，为了让导航不跟随一起滚动*/
+    /*position: fixed;
     left: 0;
     right: 0;
     top: 0;
-    z-index: 9;
-  }
-
-  .tab-control {
-    position: sticky;
-    top: 44px;
-    z-index: 9;
+    z-index: 9;*/
   }
 
   .content {
@@ -178,5 +205,10 @@
     bottom: 49px;
     left: 0;
     right: 0;
+  }
+
+  .tab-control{
+    position: relative;
+    z-index: 9;
   }
 </style>

@@ -11,12 +11,12 @@
 
   export default {
     name: "Scroll",
-    props:{
-      probeType:{
+    props: {
+      probeType: {
         type: Number,
         default: 0
       },
-      pullUpLoad:{
+      pullUpLoad: {
         type: Boolean,
         default: false
       }
@@ -38,17 +38,25 @@
         // console.log(position);
         this.$emit('scroll', position)
       })
-      // 3.监听上拉事件
+      // 3.监听scroll滚动到底部
       this.scroll.on('pullingUp', () => {
+        console.log('监听到滚动到底部');
         this.$emit('pullingUp')
       })
     },
-    methods:{
-      scrollTo(x, y, time = 300){
-        this.scroll.scrollTo(x, y, time)
+    methods: {
+      scrollTo(x, y, time = 300) {
+        this.scroll && this.scroll.scrollTo(x, y, time)
       },
       finishPullUp(){
-        this.scroll.finishPullUp()
+        this.scroll && this.scroll.finishPullUp()
+      },
+      refresh() {
+        console.log('防抖动')
+        this.scroll && this.scroll.refresh()
+      },
+      getScrollY(){
+        return this.scroll ? this.scroll.y : 0
       }
     }
   }
